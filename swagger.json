@@ -1,0 +1,139 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"ResponseMovesParams": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"player": {
+					"type": "string"
+				},
+				"board": {
+					"type": "string"
+				},
+				"timestamp": {
+					"type": "number",
+					"format": "double"
+				},
+				"date": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"player",
+				"board",
+				"timestamp",
+				"date"
+			],
+			"type": "object",
+			"additionalProperties": true
+		},
+		"MovesParams": {
+			"properties": {
+				"player": {
+					"type": "string"
+				},
+				"board": {
+					"type": "string"
+				},
+				"timestamp": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"required": [
+				"player",
+				"board",
+				"timestamp"
+			],
+			"type": "object",
+			"additionalProperties": true
+		}
+	},
+	"info": {
+		"title": "tic-tac-toe",
+		"version": "1.0.0",
+		"description": "Tic Tac Toe game backend"
+	},
+	"paths": {
+		"/getMoves": {
+			"get": {
+				"operationId": "GetMoves",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "",
+						"schema": {
+							"$ref": "#/definitions/ResponseMovesParams"
+						},
+						"examples": {
+							"application/json": {
+								"player": "X",
+								"timestamp": 1606309200
+							}
+						}
+					}
+				},
+				"tags": [
+					"Endpoints"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "player",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "timestamp",
+						"required": true,
+						"format": "double",
+						"type": "number"
+					}
+				]
+			}
+		},
+		"/postMoves": {
+			"post": {
+				"operationId": "PostMoves",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"tags": [
+					"Endpoints"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "requestBody",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/MovesParams"
+						}
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}
